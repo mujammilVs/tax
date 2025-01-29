@@ -1,41 +1,58 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { ChevronUp, ChevronDown } from "lucide-react";
 
-const Faq = ({ faqs }) => {
-  const [activeIndex, setActiveIndex] = useState(null);
+export default function FAQSection() {
+  const faqs = [
+    {
+      question: "How do I get started?",
+      answer:
+        'Simply click on the "Get Started" button above to begin your tax filing process.',
+    },
+    {
+      question: "Is my data secure?",
+      answer:
+        "Yes, we use industry-leading encryption and security measures to protect your personal information.",
+    },
+    {
+      question: "How much does it cost?",
+      answer:
+        "We offer competitive pricing, with options for both simple and more complex tax filings. Pricing will be shown before you finalize the submission.",
+    },
+  ];
+
+  const [openIndex, setOpenIndex] = useState(null);
 
   const toggleFAQ = (index) => {
-    setActiveIndex(activeIndex === index ? null : index);
+    setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-16">Frequently Asked Questions</h2>
+        <h2 className="text-3xl font-bold text-center mb-16 text-primary">
+          Frequently Asked Questions
+        </h2>
         <div className="max-w-3xl mx-auto">
           {faqs.map((faq, index) => (
-            <div key={index} className="mb-4 border-b pb-4">
+            <div key={index} className="mb-4 border-b border-gray-300 pb-4">
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full text-left flex justify-between items-center text-xl font-semibold mb-2"
+                className="flex justify-between items-center w-full text-left text-xl font-semibold text-primary mb-2 focus:outline-none"
               >
                 {faq.question}
-                <span className={`transition-transform ${activeIndex === index ? "rotate-180" : ""}`}>
-                  ▼
-                </span>
+                {openIndex === index ? (
+                  <ChevronUp className="w-5 h-5 text-gray-500" />
+                ) : (
+                  <ChevronDown className="w-5 h-5 text-gray-500" />
+                )}
               </button>
-              <div
-                className={`overflow-hidden transition-all duration-300 ${
-                  activeIndex === index ? "max-h-screen" : "max-h-0"
-                }`}
-              >
-                <p className="text-gray-600 mt-2">{faq.answer}</p>
-              </div>
+              {openIndex === index && (
+                <p className="text-primary mt-2">{faq.answer}</p>
+              )}
             </div>
           ))}
         </div>
       </div>
     </section>
   );
-};
-
-export default Faq;
+}

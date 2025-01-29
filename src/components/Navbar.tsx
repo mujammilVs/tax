@@ -22,7 +22,7 @@ export default function Navbar() {
 
               <img src={logo} alt="" className="w-8 h-8 text-" />
               <span className="ml-2 text-3xl  text-white font-light">
-                Simplicon Tax
+                Simplicon Tax Advisors
               </span>
             </div>
           </Link>
@@ -54,11 +54,11 @@ export default function Navbar() {
 
           {/* Mobile menu button */}
           <div className="md:hidden">
-            <button onClick={toggleMenu} className="text-white">
+            <button onClick={toggleMenu} className="text-last">
               {isMenuOpen ? (
-                <X className="w-6 h-6" />
+                <X className="w-6 h-6 text-last" />
               ) : (
-                <Menu className="w-6 h-6" />
+                <Menu className="w-6 h-6 text-last" />
               )}
             </button>
           </div>
@@ -71,21 +71,21 @@ export default function Navbar() {
               <Link
                 to="/"
                 onClick={() => setIsMenuOpen(false)}
-                className="text-white hover:text-primary transition-colors"
+                className="text-last hover:text-primary transition-colors"
               >
                 Home
               </Link>
               <Link
                 to="/services"
                 onClick={() => setIsMenuOpen(false)}
-                className="text-white hover:text-primary transition-colors"
+                className="text-last hover:text-primary transition-colors"
               >
                 Services
               </Link>
               <Link
                 to="/auth"
                 onClick={() => setIsMenuOpen(false)}
-                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:text-primary transition-colors"
+                className="bg-primary text-last px-4 py-2 rounded-lg hover:text-primary transition-colors hover:bg-background"
               >
                 Sign In
               </Link>
